@@ -1,0 +1,13 @@
+44100 / 200 = 220
+(2 * 44100) / 200 = 440
+
+
+
+( incr * FRAME_RATE )  /  FRAMES_PER_BUFFER = FREQUENCY
+
+
+(FREQUENCY * FRAMES_PER_BUFFER) / FRAME_RATE = incr
+
+
+
+(SAMPLE_RATE /  (TABLE_SIZE / incr)) = freq
