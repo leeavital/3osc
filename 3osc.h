@@ -6,7 +6,7 @@
 #define SAMPLE_RATE 44100
 #define N_PI 3.14159
 #define TABLE_SIZE 1000
-
+#define NUM_SYNTHS 3
 
 
 
@@ -20,11 +20,13 @@ float sin_tab[ TABLE_SIZE ];
 float triangle_tab[ TABLE_SIZE ];
 float saw_tab[ TABLE_SIZE ];
 
+t_synth synthesizers[ NUM_SYNTHS ];
+
 void build_tables();
 
+
+// public
 void setFrequency();
-
-
 
 void setSynth( int, float* );
 
