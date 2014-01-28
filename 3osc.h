@@ -18,8 +18,8 @@ typedef struct t_synth{
 
 
 
-void build_tables();
-
+void oscInit();
+void oscStartLoop();
 
 // public
 void setFrequency();
