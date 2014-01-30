@@ -5,6 +5,7 @@
 #include <unistd.h>
 
 #include "3osc.h"
+#include "ftable.h"
 
 
 #define N_PI 3.14159
@@ -28,7 +29,7 @@ pthread_t loop_thread;
 pthread_attr_t *attrs = NULL;
 
 
-// functional arrays 
+// functional arrays
 float sin_tab[ TABLE_SIZE ];
 float triangle_tab[ TABLE_SIZE ];
 float saw_tab[ TABLE_SIZE ];
@@ -138,6 +139,7 @@ void oscInit(){
 }
 
 void setFrequency( double freq){
+    printf( "setFrequency called with %f\n", freq);
     frequency = freq;
     incr = (double)(TABLE_SIZE * frequency ) / (double)SAMPLE_RATE;
 }
@@ -191,7 +193,7 @@ void setSynth( int synth_num, int  synth ){
 
 
 void setGain( int synth_num, float gain ){
-
+    synthesizers[ synth_num ].gain = gain;
 
 }
 
@@ -204,16 +206,4 @@ void oscStartLoop(){
 }
 
 
-int main(){
-    oscInit();
-    oscStartLoop();
-
-    char ch;
-    while( (ch = getchar()) != '.'  ){
-        printf( "got %c\n", ch);
-        fflush( stdout );
-    }
-
-
-}
 
