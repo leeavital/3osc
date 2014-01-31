@@ -16,6 +16,8 @@ typedef struct t_synth{
     float gain;
 } t_synth;
 
+typedef int synth_t;
+
 
 
 void oscInit();
@@ -24,7 +26,7 @@ void oscStartLoop();
 // public
 void setFrequency();
 
-void setSynth( int, int );
+void setSynth( int, synth_t );
 
 void setGain( int, float );
 
