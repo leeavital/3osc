@@ -56,11 +56,17 @@ t_node * parse( char* cmd ){
 }
 
 
+// the identity function, used as the evaluation
+// function when the node is a scalar value (e.g. string,
+// int, float)
+//
+// so, eval( "3" ) would resolve to identity( &3, NULL );
 void* identity( void *i , t_node* _args){
     return i;
 }
 
 
+// determine if a string is an int
 int str_is_int( char* c ){
     int i;
     for( i = 0; i < strlen( c ); i++ ){
