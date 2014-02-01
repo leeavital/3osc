@@ -23,7 +23,7 @@ int main(){
 
     // printf( "frequency %f\n", frequency);
 
-    char* command = "3";
+    char* command = "(3 ";
     int i = *((int*)eval( command ));
     printf("%d\n", i );
 
