@@ -1,9 +1,8 @@
-CFLAGS=`pkg-config portaudio-2.0 --libs` -lpthread -Wall
+CFLAGS=`pkg-config portaudio-2.0 flex --libs` -lpthread -Wall
 DEBUG_FLAGS=-g
 OUT=3osc
 
-LIBS=`pkg-config portaudio-2.0 --cflags-only-I`
-LIB_FLEX=-L/usr/local/Cellar/flex/2.5.37/lib/ -lfl
+LIBS=`pkg-config portaudio-2.0 flex --cflags-only-I`
 
 SRC=$(wildcard *.c)
 OBJECTS=$(patsubst %.c,%.o,$(wildcard *.c))
