@@ -718,7 +718,7 @@ case 1:
 YY_RULE_SETUP
 #line 6 "tokens.y"
 {
-    printf( "digit %s\n", yytext ); 
+    printf( "digit %s\n", yytext );
 }
 	YY_BREAK
 case 2:
