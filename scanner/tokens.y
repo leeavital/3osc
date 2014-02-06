@@ -7,6 +7,10 @@ ID [a-z]+
     printf( "digit %s\n", yytext );
 }
 
+{ID}+ {
+    printf( "id: %s", yytext);
+}
+
 
 
 %%
