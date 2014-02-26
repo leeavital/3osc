@@ -22,6 +22,8 @@ typedef int synth_t;
 
 void oscInit();
 void oscStartLoop();
+void oscWait();
+
 
 // public
 void setFrequency();

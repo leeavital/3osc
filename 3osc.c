@@ -1,19 +1,21 @@
+#include "3osc.h"
+#include "ftable.h"
+
 #include <stdio.h>
 #include <math.h>
 #include <portaudio.h>
 #include <pthread.h>
 #include <unistd.h>
 
-#include "3osc.h"
-#include "ftable.h"
 
 
 #define N_PI 3.14159
 #define TABLE_SIZE 1000
 
 
-
-// forward declarations of internal
+// build_tables() builds a function table
+// for sin, triangle and sawtooth waves so
+// we don't need to use the math.h functions
 void build_tables();
 
 
@@ -50,8 +52,8 @@ double	phase;
 double incr;
 
 
-
-void *loop( void* arg ){
+// this is function we will send to a thread
+void* loop( void* arg ){
 
     int i, j, k;
     i = 0;
@@ -116,9 +118,6 @@ void *loop( void* arg ){
     }
 
 
-
-
-
     err = Pa_StopStream( stream );
     if( err ){
         printf("error\n");
@@ -128,6 +127,7 @@ void *loop( void* arg ){
 
 
 
+// You need to call this before  oscStartLoop()
 void oscInit(){
     build_tables();
     setFrequency( 440.0 );
@@ -138,6 +138,9 @@ void oscInit(){
     fflush( stdout );
 }
 
+
+// set the frequuency of all three oscillators
+// use Hertz
 void setFrequency( double freq){
     printf( "setFrequency called with %f\n", freq);
     frequency = freq;
@@ -202,6 +205,10 @@ void setGain( int synth_num, float gain ){
 
 void oscStartLoop(){
     pthread_create( &loop_thread, NULL, loop, NULL );
+}
+
+
+void oscWait(){
     pthread_join( loop_thread, NULL );
 }
 
