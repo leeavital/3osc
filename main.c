@@ -5,4 +5,5 @@
 int main(){
     oscInit();
     oscStartLoop();
+    oscWait();
 }
