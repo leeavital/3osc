@@ -1,5 +1,5 @@
 #ifndef _3OSC_H
-#define _3OSCH
+#define _3OSC_H
 
 
 #define FRAMES_PER_BUFFER 1024
