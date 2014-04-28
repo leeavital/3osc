@@ -2,8 +2,17 @@ SRC=parser.d scanner.d
 SRC_MAIN=main.d
 SRC_TEST=empty.d
 
-all:
-	dmd $(SRC) $(SRC_MAIN)
+LIB3OSC=../lib3osc.a
+
+
+
+all: lib3osc
+	dmd $(SRC) $(SRC_MAIN) $(LIB3OSC)
+
+
+lib3osc: $(LIB3OSC)
+	cd ../; cmake CMakeLists.txt; make
+
 
 run: all
 	./main

@@ -20,5 +20,9 @@ endif( PORTAUDIO_FOUND )
 set( LIBS ${LIBS} "pthread" )
 
 
-add_executable( 3osc main.c ftable.c 3osc.c)
-target_link_libraries( 3osc ${LIBS} )
+add_executable( 3osci main.c ftable.c 3osc.c)
+target_link_libraries( 3osci ${LIBS} )
+
+
+add_library( 3osc ftable.c 3osc.c)
+target_link_libraries( 3osc ${LIBS})
