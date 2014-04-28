@@ -7,43 +7,53 @@ import std.stdio;
 import std.array;
 
 
-private class Node {
-  abstract int evaluate();
+public class Node {
+
+  abstract int integer();
 }
 
-private class IntNode : Node  {
+public class IntNode : Node  {
+
   int val;
   public this( int val ){
     this.val = val;
   }
-  override int evaluate(){
+
+  override int integer(){
     return val;
   }
+
+
 }
 
 
-private class ApplyNode : Node{
+public class ApplyNode : Node{
   string op;
   Node[] args;
   public this( string op ){
     this.op = op;
   }
-  override int evaluate(){
+  private Node evaluate(){
     if( op == "+" ){
       int i = 0;
       foreach( n ;  this.args ){
-        i += n.evaluate();
+        i += n.integer();
       }
-      return i;
+      return new IntNode( i  );
     }
-
 
     if( op == "-" ){
-      return args[0].evaluate() - args[1].evaluate();
+      return new IntNode( args[0].integer() - args[1].integer() );
     }
 
 
-    return 0;
+
+
+    return new IntNode( 0 );
+  }
+
+  override int integer(){
+    return evaluate().integer();
   }
 }
 
@@ -118,8 +128,9 @@ unittest{
 
 unittest{
   auto toks = [ "3" ];
+  auto node = parse( toks )[0];
 
-  assert( parse( toks )[0].evaluate() == 3 , "simple value" );
+  assert(  node.integer() == 3 , "simple value" );
 
 }
 
@@ -129,11 +140,11 @@ unittest{
 
   assert( nodes.length == 1 );
 
-  assert( nodes[0].evaluate() == 7 , "One level add" );
+  assert( nodes[0].integer() == 7 , "One level add" );
 }
 
 
 unittest{
   auto nodes = parse( ["(", "-", "5", "3", ")" ] );
-  assert( (cast(ApplyNode)(nodes[0])).evaluate() == 2, "single subtract" );
+  assert( nodes[0].integer()  == 2, "single subtract" );
 }

@@ -10,13 +10,11 @@ int main(){
     auto tokens = scanner.lex( line );
     auto tree = parser.parse( tokens );
 
-    int i = tree[0].evaluate();
+    auto n = tree[0].integer();
 
-    writefln( "RESULT: %d", i );
-
+    writefln( "RESULT: %d", n );
   }
 
 
   return 0;
 }
-
